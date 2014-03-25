@@ -59,7 +59,6 @@ class MainMenu(npyscreen.FormBaseNew):
                                 name="Quit")
         self.button5.whenPressed = buttonpress5
 
-if __name__ == "__main__":
-    app = MyApplication()
-    app.run()
+
+
 

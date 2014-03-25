@@ -3,9 +3,11 @@
 import sys
 import bsddb3 as bsddb
 import random
+import os
+import npyscreen
 
 # Make sure you run "mkdir /tmp/my_db" first!
-DA_FILE = "/tmp/my_db/sample_db"
+DA_FILE = "/tmp/sobolews_db/sample_db"
 DB_SIZE = 1000
 SEED = 10000000
 
@@ -69,3 +71,7 @@ def makeHASH():
         db.close()
     except Exception as e:
         print (e)
+
+if __name__ == "__main__":
+    app = MyApplication()
+    app.run()
