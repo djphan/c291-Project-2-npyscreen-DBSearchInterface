@@ -1,0 +1,17 @@
+PROJECT 2 HINTS
+
+Retrieve a record to given key
+:: see sample program.
+
+
+Retrieve record with given data value
+:: Use extra db to save inverse pair
+
+Retireve list of record with given range of key values
+Try to investigate set_location function in Btree
+Try to iterate all in hash table
+
+General Hint:
+Modify based on sample, which is simpler
+
+
