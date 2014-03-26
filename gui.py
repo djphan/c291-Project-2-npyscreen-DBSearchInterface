@@ -18,6 +18,7 @@ class MyApplication(npyscreen.NPSAppManaged):
 #        self.addFormClass('DATARETRIEVE', DataRetrieve, name="DATA RETRIEVE")
 #        self.addFormClass('RANGERETRIEVE', RangeRetrieve, name="RANGE RETRIEVE")
 
+
 class MainMenu(npyscreen.FormBaseNew):
     def create(self):
 

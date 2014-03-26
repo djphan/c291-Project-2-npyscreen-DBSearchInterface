@@ -7,7 +7,6 @@ import os
 import npyscreen
 import gui
 
-
 # Make sure you run "mkdir /tmp/my_db" first!
 DA_FILE = "/tmp/sobolews_db/sample_db"
 DB_SIZE = 1000
