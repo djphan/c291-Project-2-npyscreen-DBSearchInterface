@@ -14,9 +14,9 @@ class MyApplication(npyscreen.NPSAppManaged):
 
     def onStart(self):
         self.addFormClass('MAIN', MainMenu, name="MAIN MENU")
-        self.addFormClass('KEYRETRIEVE', KeyRetrieve, name="KEY RETRIEVE")
-        self.addFormClass('DATARETRIEVE', DataRetrieve, name="DATA RETRIEVE")
-        self.addFormClass('RANGERETRIEVE', RangeRetrieve, name="RANGE RETRIEVE")
+        # self.addFormClass('KEYRETRIEVE', KeyRetrieve, name="KEY RETRIEVE")
+        # self.addFormClass('DATARETRIEVE', DataRetrieve, name="DATA RETRIEVE")
+        # self.addFormClass('RANGERETRIEVE', RangeRetrieve, name="RANGE RETRIEVE")
 
 class MainMenu(npyscreen.FormBaseNew):
     def create(self):
