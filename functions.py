@@ -5,7 +5,6 @@ DA_FILE = "/tmp/sobolews_db/sample_db"
 DB_SIZE = 1000
 SEED = 10000000
 
-
 def get_random():
     return random.randint(0, 63)
 def get_random_char():
@@ -56,9 +55,9 @@ def makeHASH():
         value = ""
         for i in range(vrng):
             value += str(get_random_char())
-        print (key)
-        print (value)
-        print ("")
+        #print (key)
+        #print (value)
+        #print ("")
         key = key.encode(encoding='UTF-8')
         value = value.encode(encoding='UTF-8')
         db[key] = value
