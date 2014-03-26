@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 import npyscreen
 from functions import *
+import os
+import shutil
 
 arg = None
 
@@ -23,11 +25,24 @@ class MainMenu(npyscreen.FormBaseNew):
         def buttonpress3(*args):
             self.parentApp.switchForm("RANGERETRIEVE")
         def buttonpress4(*args):
+            try:
+                dropDB()
+            except Exception as e:
+                npyscreen.notify_confirm(str(e),
+                    title="Database File Error", editw=1) 
+                return
             # Call Success popup
-            pass
+            npyscreen.notify_confirm("Database file removed successfully",
+                title="Database Deleted", editw=1)
         def buttonpress5(*args):
             self.parentApp.setNextForm(None)
             self.editing = False
+            try:
+                shutil.rmtree(DA_DIR)
+            except OSError:
+                npyscreen.notify_confirm("/tmp file could not be deleted",
+                    title="File Error", editw=1) 
+                return
             raise SystemExit
 
         # Create the buttons and link to the appropriate functions.

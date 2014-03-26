@@ -1,6 +1,7 @@
 import bsddb3 as bsddb
-import random
+import random, os
 # Make sure you run "mkdir /tmp/my_db" first!
+DA_DIR = "/tmp/sobolews_db/"
 DA_FILE = "/tmp/sobolews_db/sample_db"
 DB_SIZE = 1000
 SEED = 10000000
@@ -66,3 +67,7 @@ def makeHASH():
     except Exception as e:
         print (e)
 
+def dropDB():
+    # db.remove(DA_FILE) method should probably be called for now
+    # os.remove clears the file out.
+    os.remove(DA_FILE)

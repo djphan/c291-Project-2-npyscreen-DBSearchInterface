@@ -6,7 +6,7 @@ import random
 import os
 import npyscreen
 import gui
-
+from functions import *
 
 class MyApplication(npyscreen.NPSAppManaged):
     """
@@ -24,7 +24,12 @@ class MyApplication(npyscreen.NPSAppManaged):
         # self.addFormClass('KEYRETRIEVE', KeyRetrieve, name="KEY RETRIEVE")
         # self.addFormClass('DATARETRIEVE', DataRetrieve, name="DATA RETRIEVE")
         # self.addFormClass('RANGERETRIEVE', RangeRetrieve, name="RANGE RETRIEVE")
-
+        
+        # create the temp directory
+        try:
+            os.mkdir(DA_DIR)
+        except OSError:
+            print("A temp directory named %s already exists % DA_DIR")
 
 if __name__ == "__main__":    
     
