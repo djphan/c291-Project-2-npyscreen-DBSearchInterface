@@ -31,11 +31,11 @@ if __name__ == "__main__":
     try:
         gui.arg = sys.argv[1]
     except IndexError:
-        print("Please provide an argument")
+        print("Please provide an argument.")
         raise SystemExit
 
     if gui.arg not in {'btree', 'hash', 'indexfile'}:
-        print("Invalid argument")
+        print("Invalid argument. Use db_type arguments: btree, hash, or indexfile to run program")
         raise SystemExit
 
     app = MyApplication()
