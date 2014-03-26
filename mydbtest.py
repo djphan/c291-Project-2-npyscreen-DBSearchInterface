@@ -7,72 +7,36 @@ import os
 import npyscreen
 import gui
 
-# Make sure you run "mkdir /tmp/my_db" first!
-DA_FILE = "/tmp/sobolews_db/sample_db"
-DB_SIZE = 1000
-SEED = 10000000
 
-def get_random():
-    return random.randint(0, 63)
-def get_random_char():
-    return chr(97 + random.randint(0, 25))
+class MyApplication(npyscreen.NPSAppManaged):
+    """
+    An NPS Managed Application. This class holds all the forms, manages their
+    status, switches between them and displays them.
+    
+    To launch the application, an instance of MyApplication is created, and
+    MyApplication.run is called.
 
-def makeBTREE():
+    This happens automatically when this module is run as a script.
+    """
+
+    def onStart(self):
+        self.addFormClass('MAIN', gui.MainMenu, name="MAIN MENU")
+        # self.addFormClass('KEYRETRIEVE', KeyRetrieve, name="KEY RETRIEVE")
+        # self.addFormClass('DATARETRIEVE', DataRetrieve, name="DATA RETRIEVE")
+        # self.addFormClass('RANGERETRIEVE', RangeRetrieve, name="RANGE RETRIEVE")
+
+
+if __name__ == "__main__":    
+    
     try:
-        db = bsddb.btopen(DA_FILE, "w")
-    except:
-        print("DB doesn't exist, creating a new one")
-        db = bsddb.btopen(DA_FILE, "c")
-    random.seed(SEED)
+        gui.arg = sys.argv[1]
+    except IndexError:
+        print("Please provide an argument")
+        raise SystemExit
 
-    for index in range(DB_SIZE):
-        krng = 64 + get_random()
-        key = ""
-        for i in range(krng):
-            key += str(get_random_char())
-        vrng = 64 + get_random()
-        value = ""
-        for i in range(vrng):
-            value += str(get_random_char())
-        print (key)
-        print (value)
-        print ("")
-        key = key.encode(encoding='UTF-8')
-        value = value.encode(encoding='UTF-8')
-        db[key] = value
-    try:
-        db.close()
-    except Exception as e:
-        print (e)
+    if gui.arg not in {'btree', 'hash', 'indexfile'}:
+        print("Invalid argument")
+        raise SystemExit
 
-def makeHASH():
-    try:
-        db = bsddb.hashopen(DA_FILE, "w")
-    except:
-        print("DB doesn't exist, creating a new one")
-        db = bsddb.hashopen(DA_FILE, "c")
-    random.seed(SEED)
-
-    for index in range(DB_SIZE):
-        krng = 64 + get_random()
-        key = ""
-        for i in range(krng):
-            key += str(get_random_char())
-        vrng = 64 + get_random()
-        value = ""
-        for i in range(vrng):
-            value += str(get_random_char())
-        print (key)
-        print (value)
-        print ("")
-        key = key.encode(encoding='UTF-8')
-        value = value.encode(encoding='UTF-8')
-        db[key] = value
-    try:
-        db.close()
-    except Exception as e:
-        print (e)
-
-if __name__ == "__main__":
-    app = gui.MyApplication()
+    app = MyApplication()
     app.run()
