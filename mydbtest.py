@@ -24,12 +24,15 @@ class MyApplication(npyscreen.NPSAppManaged):
         self.addFormClass('KEYRETRIEVE', KeyRetrieve, name="KEY RETRIEVE")
         # self.addFormClass('DATARETRIEVE', DataRetrieve, name="DATA RETRIEVE")
         # self.addFormClass('RANGERETRIEVE', RangeRetrieve, name="RANGE RETRIEVE")
-        
         # Create the temp directory
+
         try:
             os.mkdir(DA_DIR)
         except OSError:
-            print("A temp directory named %s already exists % DA_DIR")
+           # Dan: Gotta use a popup to see error.
+           npyscreen.notify_confirm("A temp directory named %s already exists" %DA_DIR, editw=1,
+                                     title='Result Error')
+            #print("A temp directory named %s already exists % DA_DIR")
 
 class KeyRetrieve(npyscreen.ActionPopup):
     def create(self):
@@ -41,13 +44,24 @@ class KeyRetrieve(npyscreen.ActionPopup):
         Takes in results as a tuple of (key, value), and time, 
         and displays the desired results given in the form. 
         """
-
         if not results:
             npyscreen.notify_confirm("No results given.", editw=1,
                                      title='Result Error')
+
+        self.results.values = ['\n']
+        joined = dict()
+
         for items in results:
-            pass
-        pass
+            if not items[1] in joined:
+                joined[items[1]] = list()
+                joined[items[1]].append("Key: %s\n"%items[0])
+                joined[items[1]].append("Value: %s\n"%items[1])
+                joined[items[1]].append("Time: %s\n"%time)
+            else:
+                joined[items[1]].insert(-2, ' '*15+'\n')
+
+        for values in joined:
+            self.results.values.extend(joined[values])
 
     def on_ok(self):
         # ERROR PROCESSING
@@ -57,12 +71,13 @@ class KeyRetrieve(npyscreen.ActionPopup):
             return
 
         try:
-           self.results =  db.keys(self.search_key.value.encode(encoding='UTF-8'))
+           self.results =  bsddb.btopen(DA_FILE, "w").set_location(self.search_key.value.encode(encoding='UTF-8'))
         except KeyError:
-            npyscreen.notify_confirm("Invalid key entered. Database does not have key value", editw=1,
-                                     title='Key Error')
+            npyscreen.notify_confirm("Invalid key entered. Database does not have key value", 
+                                     editw=1, title='Key Error')
         else:
-            npyscreen.notify_confirm("STRANGE ERROR.", editw=1,
+            # Figure out how to print the results??
+            npyscreen.notify_confirm(print(self.results), editw=1,
                                      title='Error')
 
         # Seperate Modules?   
