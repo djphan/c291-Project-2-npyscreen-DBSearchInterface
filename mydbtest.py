@@ -29,12 +29,10 @@ class MyApplication(npyscreen.NPSAppManaged):
         try:
             os.mkdir(DA_DIR)
         except OSError:
-           # Dan: Gotta use a popup to see error.
            npyscreen.notify_confirm("A temp directory named %s already exists" %DA_DIR, editw=1,
                                      title='Result Error')
-            #print("A temp directory named %s already exists % DA_DIR")
 
-class KeyRetrieve(npyscreen.ActionPopup):
+class KeyRetrieve(npyscreen.ActionForm):
     def create(self):
         self.search_key = self.add(npyscreen.TitleText, name='Input Key:')
 
@@ -48,7 +46,7 @@ class KeyRetrieve(npyscreen.ActionPopup):
             npyscreen.notify_confirm("No results given.", editw=1,
                                      title='Result Error')
 
-        self.results.values = ['\n']
+        self.results_values = ['\n']
         joined = dict()
 
         for items in results:
@@ -58,10 +56,10 @@ class KeyRetrieve(npyscreen.ActionPopup):
                 joined[items[1]].append("Value: %s\n"%items[1])
                 joined[items[1]].append("Time: %s\n"%time)
             else:
-                joined[items[1]].insert(-2, ' '*15+'\n')
+                joined[items[1]].insert(-2, ' '*26+'\n')
 
         for values in joined:
-            self.results.values.extend(joined[values])
+            self.results_values.extend(joined[values])
 
     def on_ok(self):
         # ERROR PROCESSING
@@ -69,20 +67,25 @@ class KeyRetrieve(npyscreen.ActionPopup):
             npyscreen.notify_confirm("Please insert key to search by.", editw=1,
                                      title='Search Key Error')
             return
-
         try:
            self.results =  bsddb.btopen(DA_FILE, "w").set_location(self.search_key.value.encode(encoding='UTF-8'))
+           
         except KeyError:
             npyscreen.notify_confirm("Invalid key entered. Database does not have key value", 
                                      editw=1, title='Key Error')
-        else:
+            return
+        #else:
             # Figure out how to print the results??
-            npyscreen.notify_confirm(print(self.results), editw=1,
-                                     title='Error')
+            #npyscreen.notify_confirm("WR", 
+             #                        editw=1, title='Key Error')
 
         # Seperate Modules?   
         # Figure out why database is not being accessed.
-        self.parentApp.switchFormPrevious()
+
+
+        print(self.results[0].decode(encoding='UTF-8'))
+        self.process_result(self.results, 10)
+
     def on_cancel(self):
         self.parentApp.switchFormPrevious()
 
