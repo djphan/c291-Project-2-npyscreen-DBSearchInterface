@@ -35,9 +35,13 @@ class MyApplication(npyscreen.NPSAppManaged):
 class KeyRetrieve(npyscreen.ActionForm):
     def create(self):
         self.search_key = self.add(npyscreen.TitleText, name='Input Key:')
+        self.nextrely+=1
+        self.results = self.add(npyscreen.Pager, name="Results:", height=14,
+                                max_height=14, scroll_exit=True,
+                                slow_scroll=True, exit_left=True,
+                                exit_right=True)
 
     def process_result(self, results, time):
-        # THINK ABOUT HOW TO PROCESS ERRORS SOME MORE
         """
         Takes in results as a tuple of (key, value), and time, 
         and displays the desired results given in the form. 
@@ -46,7 +50,7 @@ class KeyRetrieve(npyscreen.ActionForm):
             npyscreen.notify_confirm("No results given.", editw=1,
                                      title='Result Error')
 
-        self.results_values = ['\n']
+        self.results.values = ['\n']
         joined = dict()
 
         for items in results:
@@ -59,32 +63,27 @@ class KeyRetrieve(npyscreen.ActionForm):
                 joined[items[1]].insert(-2, ' '*26+'\n')
 
         for values in joined:
-            self.results_values.extend(joined[values])
+            self.results.values.extend(joined[values])
 
     def on_ok(self):
-        # ERROR PROCESSING
         if not self.search_key.value:
             npyscreen.notify_confirm("Please insert key to search by.", editw=1,
                                      title='Search Key Error')
             return
+
         try:
-           self.results =  bsddb.btopen(DA_FILE, "w").set_location(self.search_key.value.encode(encoding='UTF-8'))
-           
+            # Note should check for what mode is executed. Currently only working for b-tree.
+           results =  bsddb.btopen(DA_FILE, "w").set_location(self.search_key.value.encode(encoding='UTF-8'))
+           results = (results[0].decode(encoding='UTF-8'), results[1].decode(encoding='UTF-8'))
         except KeyError:
             npyscreen.notify_confirm("Invalid key entered. Database does not have key value", 
                                      editw=1, title='Key Error')
             return
-        #else:
-            # Figure out how to print the results??
-            #npyscreen.notify_confirm("WR", 
-             #                        editw=1, title='Key Error')
 
-        # Seperate Modules?   
-        # Figure out why database is not being accessed.
-
-
-        print(self.results[0].decode(encoding='UTF-8'))
-        self.process_result(self.results, 10)
+        # TestKey: nscxtqrjafoukfqyueggshqppuyaqdcaelvijnmigcvoxrgvpgazpymxegxpzvfguebwaqxymyzoqgadyktlfohrsbjxxuvtlvvxbuvrcermescjn
+        npyscreen.notify_confirm(str(results), editw=1,
+                                     title='Search Key Error')
+        self.process_result(results, 10)
 
     def on_cancel(self):
         self.parentApp.switchFormPrevious()
