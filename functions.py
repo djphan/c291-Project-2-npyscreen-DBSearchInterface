@@ -28,8 +28,9 @@ def makeBTREE():
         value = ""
         for i in range(vrng):
             value += str(get_random_char())
-        # print (key)
-        # print (value)
+        # if index == 777:
+        #     print("key %d = %s"%(index, key))
+        #     print("value %d = %s"%(index, value))
         # print ("")
         key = key.encode(encoding='UTF-8')
         value = value.encode(encoding='UTF-8')
@@ -56,6 +57,9 @@ def makeHASH():
         value = ""
         for i in range(vrng):
             value += str(get_random_char())
+        # if index == 777:
+        #     print("key %d = %s"%(index, key))
+        #     print("value %d = %s"%(index, value))
         #print (key)
         #print (value)
         #print ("")

@@ -1,0 +1,30 @@
+DATA_SEARCH: hash
+             data queried = rlfbrqyhfnvvnttkadabytgbsavyloidcfucfduxnnxnppvqazhsccnapzregdspcdngqvhwzlpqkaqbn
+             key returned = bkvvgqnyyrczupzgetjvvkfqnndhcqvpvhdvygjxvsfdktzrkvzskhheldirueyqjto
+             time taken (s): 0.005978
+
+DATA_SEARCH: btree
+             data queried = rlfbrqyhfnvvnttkadabytgbsavyloidcfucfduxnnxnppvqazhsccnapzregdspcdngqvhwzlpqkaqbn
+             key returned = bkvvgqnyyrczupzgetjvvkfqnndhcqvpvhdvygjxvsfdktzrkvzskhheldirueyqjto
+             time taken (s): 0.000332
+
+DATA_SEARCH: btree
+             data queried = rlfbrqyhfnvvnttkadabytgbsavyloidcfucfduxnnxnppvqazhsccnapzregdspcdngqvhwzlpqkaqbn
+             key returned = bkvvgqnyyrczupzgetjvvkfqnndhcqvpvhdvygjxvsfdktzrkvzskhheldirueyqjto
+             time taken (s): 0.000341
+
+DATA_SEARCH: btree
+             data queried = rlfbrqyhfnvvnttkadabytgbsavyloidcfucfduxnnxnppvqazhsccnapzregdspcdngqvhwzlpqkaqbn
+             key returned = bkvvgqnyyrczupzgetjvvkfqnndhcqvpvhdvygjxvsfdktzrkvzskhheldirueyqjto
+             time taken (s): 3.773010
+
+DATA_SEARCH: hash
+             data queried = rlfbrqyhfnvvnttkadabytgbsavyloidcfucfduxnnxnppvqazhsccnapzregdspcdngqvhwzlpqkaqbn
+             key returned = bkvvgqnyyrczupzgetjvvkfqnndhcqvpvhdvygjxvsfdktzrkvzskhheldirueyqjto
+             time taken (s): 1.026152
+
+DATA_SEARCH: hash
+             data queried = rlfbrqyhfnvvnttkadabytgbsavyloidcfucfduxnnxnppvqazhsccnapzregdspcdngqvhwzlpqkaqbn
+             key returned = bkvvgqnyyrczupzgetjvvkfqnndhcqvpvhdvygjxvsfdktzrkvzskhheldirueyqjto
+             time taken (s): 1.727651
+

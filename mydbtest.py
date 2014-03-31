@@ -7,6 +7,7 @@ import os
 import npyscreen
 import gui
 from functions import *
+from datasearch import DataRetrieve
 # from keysearch import KeyRetrieve
 
 class MyApplication(npyscreen.NPSAppManaged):
@@ -23,7 +24,7 @@ class MyApplication(npyscreen.NPSAppManaged):
     def onStart(self):
         self.addFormClass('MAIN', gui.MainMenu, name="MAIN MENU")
         self.addFormClass('KEYRETRIEVE', KeyRetrieve, name="KEY RETRIEVE")
-        # self.addFormClass('DATARETRIEVE', DataRetrieve, name="DATA RETRIEVE")
+        self.addFormClass('DATARETRIEVE', DataRetrieve, name="DATA RETRIEVE")
         # self.addFormClass('RANGERETRIEVE', RangeRetrieve, name="RANGE RETRIEVE")
         # Create the temp directory
 
@@ -72,6 +73,7 @@ class KeyRetrieve(npyscreen.ActionForm):
 
     def open_file(self, arg):
         if arg == 'btree':
+            # should this be in "w" mode or "r" mode? -carl
             results =  bsddb.btopen(DA_FILE, "w").set_location(self.search_key.value.encode(encoding='UTF-8'))
 
         elif arg == 'hash':
@@ -128,3 +130,4 @@ if __name__ == "__main__":
 
     app = MyApplication()
     app.run()
+
