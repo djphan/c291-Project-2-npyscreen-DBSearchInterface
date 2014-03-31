@@ -9,5 +9,7 @@ Communication and Notes
 
 Run from mydbtest.py. Note you need to make a directory in the root file before attempting to make the database file.
 
+DP - Seperated the Keysearch. Took Carl's code to print to file. Time maybe off?
+DP - Found a bug with the program crashing when you attempt to search without a database created.
+DP - Try and print to npyscreeen vs popup?
 
-Dan 29-03-14: Key Search: Implement for B-Tree and Hash. Need help displaying it to npyscreen. As well can't seem to pass arguments to keysearch.py but works right now in mydbtest. Will be playing around this problem later.  -

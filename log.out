@@ -28,3 +28,78 @@ DATA_SEARCH: hash
              key returned = bkvvgqnyyrczupzgetjvvkfqnndhcqvpvhdvygjxvsfdktzrkvzskhheldirueyqjto
              time taken (s): 1.727651
 
+KEY_SEARCH: btree
+             key queried = abryjyzzltndvocvuyajxrbdhswrgheisujvbljkdbhsxkohlyleargpuuuetqafymdvivzmgejdhwjfhtm
+             data returned = gaeomssgzdbqrgxjlctcsvpaqybuxmckwdwkhcdvluxxecxzjrrfczrspdbdbmukzpsytvwymgzifednwthirvsccm
+             time taken (s): 0.000911
+
+KEY_SEARCH: hash
+             key queried = abryjyzzltndvocvuyajxrbdhswrgheisujvbljkdbhsxkohlyleargpuuuetqafymdvivzmgejdhwjfhtm
+             data returned = gaeomssgzdbqrgxjlctcsvpaqybuxmckwdwkhcdvluxxecxzjrrfczrspdbdbmukzpsytvwymgzifednwthirvsccm
+             time taken (s): 0.000501
+
+KEY_SEARCH: hash
+             key queried = abryjyzzltndvocvuyajxrbdhswrgheisujvbljkdbhsxkohlyleargpuuuetqafymdvivzmgejdhwjfhtm
+             data returned = gaeomssgzdbqrgxjlctcsvpaqybuxmckwdwkhcdvluxxecxzjrrfczrspdbdbmukzpsytvwymgzifednwthirvsccm
+             time taken (s): 0.000459
+
+KEY_SEARCH: btree
+             key queried = abryjyzzltndvocvuyajxrbdhswrgheisujvbljkdbhsxkohlyleargpuuuetqafymdvivzmgejdhwjfhtm
+             data returned = gaeomssgzdbqrgxjlctcsvpaqybuxmckwdwkhcdvluxxecxzjrrfczrspdbdbmukzpsytvwymgzifednwthirvsccm
+             time taken (s): 0.000879
+
+KEY_SEARCH: btree
+             key queried = abryjyzzltndvocvuyajxrbdhswrgheisujvbljkdbhsxkohlyleargpuuuetqafymdvivzmgejdhwjfhtm
+             data returned = gaeomssgzdbqrgxjlctcsvpaqybuxmckwdwkhcdvluxxecxzjrrfczrspdbdbmukzpsytvwymgzifednwthirvsccm
+             time taken (s): 0.000466
+
+KEY_SEARCH: btree
+             key queried = abryjyzzltndvocvuyajxrbdhswrgheisujvbljkdbhsxkohlyleargpuuuetqafymdvivzmgejdhwjfhtm
+             data returned = gaeomssgzdbqrgxjlctcsvpaqybuxmckwdwkhcdvluxxecxzjrrfczrspdbdbmukzpsytvwymgzifednwthirvsccm
+             time taken (s): 0.000475
+
+KEY_SEARCH: btree
+             key queried = abryjyzzltndvocvuyajxrbdhswrgheisujvbljkdbhsxkohlyleargpuuuetqafymdvivzmgejdhwjfhtm
+             data returned = gaeomssgzdbqrgxjlctcsvpaqybuxmckwdwkhcdvluxxecxzjrrfczrspdbdbmukzpsytvwymgzifednwthirvsccm
+             time taken (s): 0.000452
+
+KEY_SEARCH: btree
+             key queried = abryjyzzltndvocvuyajxrbdhswrgheisujvbljkdbhsxkohlyleargpuuuetqafymdvivzmgejdhwjfhtm
+             data returned = gaeomssgzdbqrgxjlctcsvpaqybuxmckwdwkhcdvluxxecxzjrrfczrspdbdbmukzpsytvwymgzifednwthirvsccm
+             time taken (s): 0.000654
+
+KEY_SEARCH: btree
+             key queried = abryjyzzltndvocvuyajxrbdhswrgheisujvbljkdbhsxkohlyleargpuuuetqafymdvivzmgejdhwjfhtm
+             data returned = gaeomssgzdbqrgxjlctcsvpaqybuxmckwdwkhcdvluxxecxzjrrfczrspdbdbmukzpsytvwymgzifednwthirvsccm
+             time taken (s): 0.000449
+
+KEY_SEARCH: btree
+             key queried = abryjyzzltndvocvuyajxrbdhswrgheisujvbljkdbhsxkohlyleargpuuuetqafymdvivzmgejdhwjfhtm
+             data returned = gaeomssgzdbqrgxjlctcsvpaqybuxmckwdwkhcdvluxxecxzjrrfczrspdbdbmukzpsytvwymgzifednwthirvsccm
+             time taken (s): 0.000455
+
+KEY_SEARCH: btree
+             key queried = abryjyzzltndvocvuyajxrbdhswrgheisujvbljkdbhsxkohlyleargpuuuetqafymdvivzmgejdhwjfhtm
+             data returned = gaeomssgzdbqrgxjlctcsvpaqybuxmckwdwkhcdvluxxecxzjrrfczrspdbdbmukzpsytvwymgzifednwthirvsccm
+             time taken (s): 0.000438
+
+KEY_SEARCH: btree
+             key queried = fuugnzibmdgloweryectecwcpchqggmcabsyybjgrhbdpjusjbxkjztcylhoszxtncszdolourxpsm
+             data returned = dwestanxplgassdillaqaxycnjhuxazafimrcjcmfxiazxmsqixfssvrwicwdjhozmjsfeeecrgquhvdframewcxfbhjgmvnxz
+             time taken (s): 0.000505
+
+KEY_SEARCH: btree
+             key queried = fecmwglppfggkdvoczegtfnmfbkthdpljccmzbijsuunsukwbderhxekqokkpkqiffteerodiicihtzbpk
+             data returned = rmkfnexiuwrpfevfzvasgoswgajqwqvjwzrtcxwvptgqkgfvihgfqrzevdbuadlkpfejamqqdbitfpafxhwlulzqovhhsawl
+             time taken (s): 0.000513
+
+KEY_SEARCH: btree
+             key queried = fecmwglppfggkdvoczegtfnmfbkthdpljccmzbijsuunsukwbderhxekqokkpkqiffteerodiicihtzbpk
+             data returned = rmkfnexiuwrpfevfzvasgoswgajqwqvjwzrtcxwvptgqkgfvihgfqrzevdbuadlkpfejamqqdbitfpafxhwlulzqovhhsawl
+             time taken (s): 0.000511
+
+KEY_SEARCH: btree
+             key queried = faykgeppwpbeoqeqgltsvcpjsrhgjftdjfpdjpgmvlcjiwevfldhttvudamfacismyxvvxxxudmjlcijqpcopzcudtbiloflifdpyrcvavhq
+             data returned = elmajcxmkyjxvgvqwsouhiickjiphteivzrvyuhrneadoewuxxsldnewdxeqvzzwnkbroirfhvsoyrczz
+             time taken (s): 0.000526
+
