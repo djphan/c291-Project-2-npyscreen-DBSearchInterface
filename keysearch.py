@@ -33,20 +33,7 @@ class KeyRetrieve(npyscreen.ActionForm):
                     "Time taken: %f"%time]),
                     editw=1, title='One result found:')
 
-        #self.results.values = ['\n']
-        #joined = dict()
 
-        #for items in results:
-            #if not items[1] in joined:
-                #joined[items[1]] = list()
-                #joined[items[1]].append("Key: %s\n"%items[0])
-                #joined[items[1]].append("Value: %s\n"%items[1])
-                #joined[items[1]].append("Time: %s\n"%time)
-            #else:
-                #joined[items[1]].insert(-2, ' '*26+'\n')
-
-        #for values in joined:
-            #self.results.values.extend(joined[values])
 
     def open_db(self):
         """
@@ -73,11 +60,12 @@ class KeyRetrieve(npyscreen.ActionForm):
 
         try:
             # Generate results. 
+            results = self.open_db()
             time1 = time.time()
             # Returns a tuple of (key, value) using the BerkleyDB cursor
-            results = self.open_db().set_location(self.search_key.value.encode(encoding='UTF-8'))
+            results = results.set_location(self.search_key.value.encode(encoding='UTF-8'))
             time2 = time.time()
-            time_result = time2 - time1
+            time_result = int((time2 - time1)*1000000)  
 
             results = (results[0].decode(encoding='UTF-8'), results[1].decode(encoding='UTF-8'))
 
