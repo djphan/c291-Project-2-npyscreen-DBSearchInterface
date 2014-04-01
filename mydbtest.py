@@ -35,7 +35,7 @@ class MyApplication(npyscreen.NPSAppManaged):
             os.mkdir(DA_DIR)
         except OSError:
            npyscreen.notify_confirm("A temp directory named %s already exists" %DA_DIR, editw=1,
-                                     title='Result Error')
+                                     title='Warning:')
 
 if __name__ == "__main__":
     
