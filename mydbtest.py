@@ -9,6 +9,7 @@ import gui
 from functions import *
 from datasearch import DataRetrieve
 from keysearch import KeyRetrieve
+from range_search import RangeRetrieve
 
 # Note: Program crashes when you try and execute a search when you don't have a database.
 # Try/except catch needed to fix this.
@@ -28,7 +29,7 @@ class MyApplication(npyscreen.NPSAppManaged):
         self.addFormClass('MAIN', gui.MainMenu, name="MAIN MENU")
         self.addFormClass('KEYRETRIEVE', KeyRetrieve, name="KEY RETRIEVE")
         self.addFormClass('DATARETRIEVE', DataRetrieve, name="DATA RETRIEVE")
-        # self.addFormClass('RANGERETRIEVE', RangeRetrieve, name="RANGE RETRIEVE")
+        self.addFormClass('RANGERETRIEVE', RangeRetrieve, name="RANGE RETRIEVE")
         # Create the temp directory
 
         try:
