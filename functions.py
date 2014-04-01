@@ -75,3 +75,43 @@ def dropDB():
     # db.remove(DA_FILE) method should probably be called for now
     # os.remove clears the file out.
     os.remove(DA_FILE)
+
+
+
+def makeINDEX():
+    try:
+        db = bsddb.hashopen(DA_FILE, "w")
+        # index = bsddb.btree(...)
+        
+    except:
+        print("DB doesn't exist, creating a new one")
+        db = bsddb.hashopen(DA_FILE, "c")
+    random.seed(SEED)
+
+    for index in range(DB_SIZE):
+        krng = 64 + get_random()
+        key = ""
+        for i in range(krng):
+            key += str(get_random_char())
+        vrng = 64 + get_random()
+        value = ""
+        for i in range(vrng):
+            value += str(get_random_char())
+        # if index == 777:
+        #     print("key %d = %s"%(index, key))
+        #     print("value %d = %s"%(index, value))
+        #print (key)
+        #print (value)
+        #print ("")
+        key = key.encode(encoding='UTF-8')
+        value = value.encode(encoding='UTF-8')
+        db[key] = value
+
+        # create index file with inverted values:
+        # index[value] = key
+
+    try:
+        db.close()
+    except Exception as e:
+        print (e)
+

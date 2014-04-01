@@ -77,7 +77,7 @@ class KeyRetrieve(npyscreen.ActionForm):
             # Returns a tuple of (key, value) using the BerkleyDB cursor
             results = self.open_db().set_location(self.search_key.value.encode(encoding='UTF-8'))
             time2 = time.time()
-            time_result = time2 - time1
+            time_result = int((time2 - time1) * 1000 * 1000)
 
             results = (results[0].decode(encoding='UTF-8'), results[1].decode(encoding='UTF-8'))
 
