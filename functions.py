@@ -1,8 +1,8 @@
 import bsddb3 as bsddb
 import random, os
 # Make sure you run "mkdir /tmp/my_db" first!
-DA_DIR = "/tmp/djphan_db/"
-DA_FILE = "/tmp/djphan_db/sample_db"
+DA_DIR = "/tmp/djp_db/"
+DA_FILE = "/tmp/djp_db/sample_db"
 DB_SIZE = 1000
 SEED = 10000000
 

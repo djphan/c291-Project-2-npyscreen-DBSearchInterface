@@ -60,14 +60,17 @@ class KeyRetrieve(npyscreen.ActionForm):
 
         try:
             # Generate results. 
-            results = self.open_db()
+            db_file = self.open_db()
             time1 = time.time()
+            results = db_file[self.search_key.value.encode(encoding='UTF-8')].decode(encoding='UTF-8')
             # Returns a tuple of (key, value) using the BerkleyDB cursor
-            results = results.set_location(self.search_key.value.encode(encoding='UTF-8'))
+            # Comment out the cursor function
+            # results = results.set_location(self.search_key.value.encode(encoding='UTF-8'))
             time2 = time.time()
             time_result = int((time2 - time1)*1000000)  
 
-            results = (results[0].decode(encoding='UTF-8'), results[1].decode(encoding='UTF-8'))
+            # results = (results[0].decode(encoding='UTF-8'), results[1].decode(encoding='UTF-8'))
+            results = (self.search_key.value, results)
 
         except KeyError:
             npyscreen.notify_confirm("Invalid key entered. Database does not have key value", 
