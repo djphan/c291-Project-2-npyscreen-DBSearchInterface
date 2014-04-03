@@ -1,10 +1,12 @@
 import bsddb3 as bsddb
 import random, os
 # Make sure you run "mkdir /tmp/my_db" first!
-DA_DIR = "/tmp/djphan_db/"
-DA_FILE = "/tmp/djphan_db/sample_db"
-DB_SIZE = 1000
+DA_DIR = "/tmp/djp_db/"
+DA_FILE = "/tmp/djp_db/sample_db"
+INDEX_FILE = "/tmp/djp_db/index_db"
+DB_SIZE = 100 * 1000
 SEED = 10000000
+
 
 def get_random():
     return random.randint(0, 63)
@@ -71,21 +73,28 @@ def makeHASH():
     except Exception as e:
         print (e)
 
-def dropDB():
+def dropDB(hashfile=False):
     # db.remove(DA_FILE) method should probably be called for now
     # os.remove clears the file out.
     os.remove(DA_FILE)
 
+    if hashfile:
+        os.remove(INDEX_FILE)
 
 
-def makeINDEX():
+def makeINDEXFILE():
     try:
-        db = bsddb.hashopen(DA_FILE, "w")
-        # index = bsddb.btree(...)
-        
+        db = bsddb.btopen(DA_FILE, "w")
     except:
-        print("DB doesn't exist, creating a new one")
+        # print("DB doesn't exist, creating a new one")
         db = bsddb.hashopen(DA_FILE, "c")
+
+    try:
+        indexfile = bsddb.hashopen(INDEX_FILE, "w")
+    except:
+        # print("DB doesn't exist, creating a new one")
+        indexfile = bsddb.hashopen(INDEX_FILE, "c")
+
     random.seed(SEED)
 
     for index in range(DB_SIZE):
@@ -100,18 +109,14 @@ def makeINDEX():
         # if index == 777:
         #     print("key %d = %s"%(index, key))
         #     print("value %d = %s"%(index, value))
-        #print (key)
-        #print (value)
-        #print ("")
-        key = key.encode(encoding='UTF-8')
-        value = value.encode(encoding='UTF-8')
+        key = key.encode()
+        value = value.encode()
         db[key] = value
-
-        # create index file with inverted values:
-        # index[value] = key
+        indexfile[value] = key
 
     try:
         db.close()
+        indexfile.close()
     except Exception as e:
         print (e)
 

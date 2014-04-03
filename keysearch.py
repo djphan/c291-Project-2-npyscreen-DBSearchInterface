@@ -33,20 +33,7 @@ class KeyRetrieve(npyscreen.ActionForm):
                     "Time taken: %f"%time]),
                     editw=1, title='One result found:')
 
-        #self.results.values = ['\n']
-        #joined = dict()
 
-        #for items in results:
-            #if not items[1] in joined:
-                #joined[items[1]] = list()
-                #joined[items[1]].append("Key: %s\n"%items[0])
-                #joined[items[1]].append("Value: %s\n"%items[1])
-                #joined[items[1]].append("Time: %s\n"%time)
-            #else:
-                #joined[items[1]].insert(-2, ' '*26+'\n')
-
-        #for values in joined:
-            #self.results.values.extend(joined[values])
 
     def open_db(self):
         """
@@ -57,9 +44,9 @@ class KeyRetrieve(npyscreen.ActionForm):
 
         elif gui.arg == 'hash':
             db =  bsddb.hashopen(DA_FILE, "r")
-        else:
-            # Open Indexfile
-            pass
+        elif gui.arg == 'indexfile':
+            db =  bsddb.hashopen(DA_FILE, "r")
+
         return db
 
     def on_ok(self):
@@ -73,13 +60,18 @@ class KeyRetrieve(npyscreen.ActionForm):
 
         try:
             # Generate results. 
+            db_file = self.open_db()
             time1 = time.time()
+            results = db_file[self.search_key.value.encode(encoding='UTF-8')].decode(encoding='UTF-8')
             # Returns a tuple of (key, value) using the BerkleyDB cursor
-            results = self.open_db().set_location(self.search_key.value.encode(encoding='UTF-8'))
+            # Comment out the cursor function
+            # results = results.set_location(self.search_key.value.encode(encoding='UTF-8'))
             time2 = time.time()
+
             time_result = int((time2 - time1) * 1000 * 1000)
 
-            results = (results[0].decode(encoding='UTF-8'), results[1].decode(encoding='UTF-8'))
+            # results = (results[0].decode(encoding='UTF-8'), results[1].decode(encoding='UTF-8'))
+            results = (self.search_key.value, results)
 
         except KeyError:
             npyscreen.notify_confirm("Invalid key entered. Database does not have key value", 
@@ -91,6 +83,10 @@ class KeyRetrieve(npyscreen.ActionForm):
         self.process_result(results, time_result)
 
         self.editing = True
+
+        try: db_file.close()
+        except: pass
+
 
     def on_cancel(self):
         self.parentApp.switchFormPrevious()

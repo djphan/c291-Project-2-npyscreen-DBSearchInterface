@@ -13,7 +13,7 @@ RANGE_LEN = 200
 class RangeRetrieve(npyscreen.ActionForm):
     def create(self):
         # open the appropriate database
-        if gui.arg == 'btree':
+        if gui.arg in {'btree', 'indexfile'}:
             self.db = functions.bsddb.btopen(functions.DA_FILE, "r")
         if gui.arg == 'hash':
             self.db = functions.bsddb.hashopen(functions.DA_FILE, "r")
@@ -22,7 +22,7 @@ class RangeRetrieve(npyscreen.ActionForm):
             # list will be populated with tuples of (search time,
             # search results)
             self.range_search_data = [] 
-            if gui.arg == 'btree':
+            if gui.arg in {'btree', 'indexfile'}:
                 for key_pair in self.key_pairs:
                     self.range_search_data.append(self.bt_range_search(key_pair))
             if gui.arg == 'hash':
@@ -58,7 +58,7 @@ class RangeRetrieve(npyscreen.ActionForm):
             """
             self.key_pairs = []
             db_keys = self.db.keys()
-            if gui.arg == 'btree':
+            if gui.arg in {'btree', 'indexfile'}:
                 for i in range(NUM_TESTS):
                     # generate a random char prefix generates smaller key range
                     # for testing on db size of 1000

@@ -16,8 +16,8 @@ class MainMenu(npyscreen.FormBaseNew):
             elif arg == 'hash':
                 makeHASH()
             else:
-                # makeINDEXFILE()
-                pass
+                makeINDEXFILE()
+
         def buttonpress1(*args):
             self.parentApp.switchForm("KEYRETRIEVE")
         def buttonpress2(*args):
@@ -26,7 +26,7 @@ class MainMenu(npyscreen.FormBaseNew):
             self.parentApp.switchForm("RANGERETRIEVE")
         def buttonpress4(*args):
             try:
-                dropDB()
+                dropDB(hashfile=(True if arg=='indexfile' else False))
            # DP: Time to find a method to deal with permission errors.     
            # except bsddb.db.DBAccessError:
                # npyscreen.notify_confirm("Permission denied. Database access error", 
