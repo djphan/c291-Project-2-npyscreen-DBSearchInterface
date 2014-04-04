@@ -158,8 +158,8 @@ class RangeRetrieve(npyscreen.ActionForm):
                         end_prefix1 = start_prefix1
                         end_prefix2 = chr(ord(start_prefix2) + 1)
                         end_prefix = end_prefix1 + end_prefix2
-                        start_key = self.db.set_location(start_prefix.encode(encoding='UTF-8'))[0]
-                        end_key = self.db.set_location(end_prefix.encode(encoding='UTF-8'))[0]
+                        start_key = start_prefix.encode()
+                        end_key = end_prefix.encode()
                         self.key_pairs.append((start_key, end_key))
                     return
                 else:
@@ -206,25 +206,6 @@ class RangeRetrieve(npyscreen.ActionForm):
                         npyscreen.notify_confirm("Could not open range key pair file from b-tree mode")
                         return
 
-            # the below code generates key pairs based exclusively on the hash table
-            # this might be the default method to use if no keys are stored in the
-            # range_key_pairs file.
-            #    key_count = 0
-            #    while True:
-            #        while key_count < 4:
-            #            self.db_keys_sorted = db_keys.sort()
-            #            rand_key_index = random.randint(0, len(db_keys))
-            #            rand_start_key = db_keys[rand_key_index]
-            #            try:
-            #                end_key = db_keys[rand_key_index + RANGE_LEN]
-            #            except Exception as e:
-            #                break
-            #            self.key_pairs.append((rand_start_key, end_key))
-            #            key_count += 1
-            #        if key_count > 3:
-            #            break
-            
-
         # create form buttons and fields
         self.nextrely+=1
         self.generate_button = self.add(npyscreen.ButtonPress,
@@ -258,7 +239,7 @@ class RangeRetrieve(npyscreen.ActionForm):
         range_set = []
         t0 = time.time()
         current = self.db.set_location(key_pair[0])
-        while current[0] != key_pair[1]:
+        while current[0] <= key_pair[1]:
             range_set.append(current)
             current = self.db.next() 
         total_time = time.time() - t0
