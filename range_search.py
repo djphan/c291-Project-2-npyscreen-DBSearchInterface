@@ -121,6 +121,11 @@ class RangeRetrieve(npyscreen.ActionForm):
                     except Exception as e:
                         npyscreen.notify_confirm("Could not open key file from b-tree mode")
                         return
+            # if no file exists generate new keys
+            else:
+                self.auto_generate_keys()
+                self.attach_keys_to_fm()
+                return
 
         # create form buttons and fields
         self.nextrely+=1
@@ -166,6 +171,7 @@ class RangeRetrieve(npyscreen.ActionForm):
             name="User provided key pair result: ", editable=False)
     
     def auto_generate_keys(self):
+        # generate key pair prefixes
         self.key_pairs = []
         for i in range(NUM_TESTS):
             start_prefix1 = random.choice(string.ascii_lowercase)
@@ -180,6 +186,7 @@ class RangeRetrieve(npyscreen.ActionForm):
         return 
 
     def attach_keys_to_fm(self):
+        # attach keys to the form to hold for later use.
         key_pair_string = ''
         for key_pair in self.key_pairs:
             key_pair_string += key_pair[0].decode() + ':' \
@@ -188,7 +195,7 @@ class RangeRetrieve(npyscreen.ActionForm):
         return
 
     def bt_range_search(self, key_pair):
-        # for the time being append to a list but ask about this.
+        # go to first key, iterate through to last in range.
         range_set = []
         t0 = time.time()
         current = self.db.set_location(key_pair[0])
