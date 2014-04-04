@@ -13,7 +13,7 @@ RANGE_LEN = 200
 class RangeRetrieve(npyscreen.ActionForm):
     def create(self):
         # open the appropriate database
-        if gui.arg == 'btree':
+        if gui.arg in {'btree', 'indexfile'}:
             self.db = functions.bsddb.btopen(functions.DA_FILE, "r")
         if gui.arg == 'hash':
             self.db = functions.bsddb.hashopen(functions.DA_FILE, "r")
@@ -83,7 +83,7 @@ class RangeRetrieve(npyscreen.ActionForm):
                     return
 
             self.range_search_data = [] 
-            if gui.arg == 'btree':
+            if gui.arg in {'btree', 'indexfile'}:
                 for key_pair in self.key_pairs:
                     self.range_search_data.append(self.bt_range_search(key_pair))
             if gui.arg == 'hash':
@@ -145,7 +145,7 @@ class RangeRetrieve(npyscreen.ActionForm):
             """
             self.key_pairs = []
             db_keys = self.db.keys()
-            if gui.arg == 'btree':
+            if gui.arg in {'btree', 'indexfile'}:
                 # if the user hasn't specified a key pair use the auto generator to create
                 # 4 key pairs and run the test.
                 if self.range_start.value == '' and self.range_end.value == '':

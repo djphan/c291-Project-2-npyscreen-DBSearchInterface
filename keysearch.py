@@ -44,9 +44,9 @@ class KeyRetrieve(npyscreen.ActionForm):
 
         elif gui.arg == 'hash':
             db =  bsddb.hashopen(DA_FILE, "r")
-        else:
-            # Open Indexfile
-            pass
+        elif gui.arg == 'indexfile':
+            db =  bsddb.hashopen(DA_FILE, "r")
+
         return db
 
     def on_ok(self):
@@ -67,7 +67,8 @@ class KeyRetrieve(npyscreen.ActionForm):
             # Comment out the cursor function
             # results = results.set_location(self.search_key.value.encode(encoding='UTF-8'))
             time2 = time.time()
-            time_result = int((time2 - time1)*1000000)  
+
+            time_result = int((time2 - time1) * 1000 * 1000)
 
             # results = (results[0].decode(encoding='UTF-8'), results[1].decode(encoding='UTF-8'))
             results = (self.search_key.value, results)
@@ -82,6 +83,10 @@ class KeyRetrieve(npyscreen.ActionForm):
         self.process_result(results, time_result)
 
         self.editing = True
+
+        try: db_file.close()
+        except: pass
+
 
     def on_cancel(self):
         self.parentApp.switchFormPrevious()
