@@ -398,3 +398,33 @@ DATA_SEARCH: indexfile
              key returned = abryjyzzltndvocvuyajxrbdhswrgheisujvbljkdbhsxkohlyleargpuuuetqafymdvivzmgejdhwjfhtm
              time taken (s): 30
 
+KEY_SEARCH: btree
+             key queried = bkvvgqnyyrczupzgetjvvkfqnndhcqvpvhdvygjxvsfdktzrkvzskhheldirueyqjto
+             data returned = rlfbrqyhfnvvnttkadabytgbsavyloidcfucfduxnnxnppvqazhsccnapzregdspcdngqvhwzlpqkaqbn
+             time taken (s): 61.000000
+
+DATA_SEARCH: btree
+             data queried = rlfbrqyhfnvvnttkadabytgbsavyloidcfucfduxnnxnppvqazhsccnapzregdspcdngqvhwzlpqkaqbn
+             key returned = bkvvgqnyyrczupzgetjvvkfqnndhcqvpvhdvygjxvsfdktzrkvzskhheldirueyqjto
+             time taken (s): 310774
+
+DATA_SEARCH: hash
+             data queried = rlfbrqyhfnvvnttkadabytgbsavyloidcfucfduxnnxnppvqazhsccnapzregdspcdngqvhwzlpqkaqbn
+             key returned = bkvvgqnyyrczupzgetjvvkfqnndhcqvpvhdvygjxvsfdktzrkvzskhheldirueyqjto
+             time taken (s): 364259
+
+DATA_SEARCH: indexfile
+             data queried = rlfbrqyhfnvvnttkadabytgbsavyloidcfucfduxnnxnppvqazhsccnapzregdspcdngqvhwzlpqkaqbn
+             key returned = bkvvgqnyyrczupzgetjvvkfqnndhcqvpvhdvygjxvsfdktzrkvzskhheldirueyqjto
+             time taken (s): 63
+
+KEY_SEARCH: indexfile
+             key queried = bkvvgqnyyrczupzgetjvvkfqnndhcqvpvhdvygjxvsfdktzrkvzskhheldirueyqjto
+             data returned = rlfbrqyhfnvvnttkadabytgbsavyloidcfucfduxnnxnppvqazhsccnapzregdspcdngqvhwzlpqkaqbn
+             time taken (s): 60.000000
+
+DATA_SEARCH: indexfile
+             data queried = rlfbrqyhfnvvnttkadabytgbsavyloidcfucfduxnnxnppvqazhsccnapzregdspcdngqvhwzlpqkaqbn
+             key returned = bkvvgqnyyrczupzgetjvvkfqnndhcqvpvhdvygjxvsfdktzrkvzskhheldirueyqjto
+             time taken (s): 46
+

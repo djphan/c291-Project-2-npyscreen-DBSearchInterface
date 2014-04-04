@@ -30,8 +30,8 @@ class MyApplication(npyscreen.NPSAppManaged):
         self.addFormClass('KEYRETRIEVE', KeyRetrieve, name="KEY RETRIEVE")
         self.addFormClass('DATARETRIEVE', DataRetrieve, name="DATA RETRIEVE")
         self.addFormClass('RANGERETRIEVE', RangeRetrieve, name="RANGE RETRIEVE")
-        # Create the temp directory
 
+        # Create the temp directory
         try:
             os.mkdir(DA_DIR)
         except OSError:

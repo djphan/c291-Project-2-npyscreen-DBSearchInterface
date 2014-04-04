@@ -7,7 +7,6 @@ INDEX_FILE = "/tmp/djp_db/index_db"
 DB_SIZE = 100 * 1000
 SEED = 10000000
 
-
 def get_random():
     return random.randint(0, 63)
 def get_random_char():
@@ -87,7 +86,7 @@ def makeINDEXFILE():
         db = bsddb.btopen(DA_FILE, "w")
     except:
         # print("DB doesn't exist, creating a new one")
-        db = bsddb.hashopen(DA_FILE, "c")
+        db = bsddb.btopen(DA_FILE, "c")
 
     try:
         indexfile = bsddb.hashopen(INDEX_FILE, "w")

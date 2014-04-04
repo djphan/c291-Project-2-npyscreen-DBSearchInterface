@@ -41,12 +41,10 @@ class KeyRetrieve(npyscreen.ActionForm):
         """
         if gui.arg == 'btree':
             db =  bsddb.btopen(DA_FILE, "r")
-
         elif gui.arg == 'hash':
             db =  bsddb.hashopen(DA_FILE, "r")
         elif gui.arg == 'indexfile':
-            db =  bsddb.hashopen(DA_FILE, "r")
-
+            db =  bsddb.btopen(DA_FILE, "r")
         return db
 
     def on_ok(self):
