@@ -15,8 +15,10 @@ class RangeRetrieve(npyscreen.ActionForm):
         # open the appropriate database
         if gui.arg in {'btree', 'indexfile'}:
             self.db = functions.bsddb.btopen(functions.DA_FILE, "r")
+            self.db_max_key = self.db.last()
         if gui.arg == 'hash':
             self.db = functions.bsddb.hashopen(functions.DA_FILE, "r")
+        
 
         def notify_must_be_letter():
             npyscreen.notify_confirm("Your key prefixes must be made up of alpha chars",
@@ -39,6 +41,12 @@ class RangeRetrieve(npyscreen.ActionForm):
                 # set the range keys based on the user provided prefixes
                 start_key = self.range_start.value.encode()
                 end_key = self.range_end.value.encode()
+                
+                
+                if gui.arg in {'btree', 'indexfile'}:
+                    if end_key > self.db_max_key[0]:
+                        # prevent user key input thats outside the db range
+                        end_key = self.db_max_key[0]
                 self.user_key_pairs.append((start_key, end_key))
                 
             # perform the timed searches
@@ -78,11 +86,10 @@ class RangeRetrieve(npyscreen.ActionForm):
                     str(len(self.range_search_data[3][1]))
 
             # output data to answers file
-            f = open("answers", "w+")
-            for i in range(len(self.range_search_data)):
-                for record in self.range_search_data[i][1]:
-                    f.write(record[0].decode("utf-8") + '\n')
-                    f.write(record[1].decode("utf-8") + '\n\n')
+            f = open("answers", "a")
+            for record in self.user_range_search_data[0][1]:
+                f.write(record[0].decode("utf-8") + '\n')
+                f.write(record[1].decode("utf-8") + '\n\n')
             f.close()
 
             # save most recent auto generated key pairs
@@ -128,7 +135,6 @@ class RangeRetrieve(npyscreen.ActionForm):
                 return
 
         # create form buttons and fields
-        self.nextrely+=1
         self.generate_button = self.add(npyscreen.ButtonPress,
             name="Generate key prefix pairs")
         self.key_pair_list = self.add(npyscreen.TitleText,
@@ -148,7 +154,7 @@ class RangeRetrieve(npyscreen.ActionForm):
         self.result4 = self.add(npyscreen.TitleText, 
             name="Result 4: ", editable=False)
 
-        self.nextrely+=2
+        self.nextrely+=1
         self.enter_prefix = self.add(npyscreen.TitleText,
             name="Enter key pair prefixes of your own", editable=False)
         self.range_start = self.add(npyscreen.TitleText,
@@ -158,7 +164,7 @@ class RangeRetrieve(npyscreen.ActionForm):
             name="End Key: ")
         self.range_end.value = ''
 
-        self.nextrely+=2
+        self.nextrely+=1
 
         self.timer_button = self.add(npyscreen.ButtonPress,
             name="Start user generated key timing process")
@@ -166,7 +172,6 @@ class RangeRetrieve(npyscreen.ActionForm):
         self.generate_button.whenPressed = generate_key_pairs
 
         
-        self.nextrely+=1
         self.user_result = self.add(npyscreen.TitleText, 
             name="User provided key pair result: ", editable=False)
     
@@ -199,9 +204,15 @@ class RangeRetrieve(npyscreen.ActionForm):
         range_set = []
         t0 = time.time()
         current = self.db.set_location(key_pair[0])
-        while current[0] <= key_pair[1]:
-            range_set.append(current)
-            current = self.db.next() 
+        while True: 
+            if current[0] < key_pair[1]:
+                range_set.append(current)
+                current = self.db.next() 
+            elif current[0] == key_pair[1]:
+                range_set.append(current)
+                break
+            elif current[0] > key_pair[1]:
+                break
         total_time = time.time() - t0
         return (total_time, range_set)
 

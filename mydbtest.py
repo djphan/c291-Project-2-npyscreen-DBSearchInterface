@@ -11,7 +11,8 @@ from datasearch import DataRetrieve
 from keysearch import KeyRetrieve
 from range_search import RangeRetrieve
 
-# Note: Program crashes when you try and execute a search when you don't have a database.
+# Note: Program crashes when you try and execute a search when you don't have a
+# database.
 # Try/except catch needed to fix this.
 
 class MyApplication(npyscreen.NPSAppManaged):
@@ -35,8 +36,9 @@ class MyApplication(npyscreen.NPSAppManaged):
         try:
             os.mkdir(DA_DIR)
         except OSError:
-           npyscreen.notify_confirm("A temp directory named %s already exists" %DA_DIR, editw=1,
-                                     title='Warning:')
+           npyscreen.notify_confirm(
+               "A temp directory named %s already exists" %DA_DIR, editw=1,
+               title='Warning:')
 
 if __name__ == "__main__":
     
@@ -53,4 +55,3 @@ if __name__ == "__main__":
 
     app = MyApplication()
     app.run()
-
