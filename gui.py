@@ -38,15 +38,24 @@ class MainMenu(npyscreen.FormBaseNew):
 
             npyscreen.notify_confirm("Database file removed successfully",
                 title="Database Deleted", editw=1)
+
         def buttonpress5(*args):
             self.parentApp.setNextForm(None)
             self.editing = False
+
+            # Remove database and directory
             try:
                 shutil.rmtree(DA_DIR)
             except OSError:
                 npyscreen.notify_confirm("/tmp file could not be deleted",
                     title="File Error", editw=1) 
                 return
+
+            # Clear the answers file
+            with open("answers", 'w') as fout:
+                print('', file=fout)
+
+            # Quit
             raise SystemExit
 
         # Create the buttons and link to the appropriate functions.

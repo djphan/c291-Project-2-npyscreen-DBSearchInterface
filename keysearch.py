@@ -25,19 +25,11 @@ class KeyRetrieve(npyscreen.ActionForm):
                       '',
                       sep='\n', file=fout)
 
-            # with open("log.out", mode='a') as fout:
-            #     print("KEY_SEARCH: %s"%gui.arg,
-            #           "             key queried = %s"%results[0],
-            #           "             data returned = %s"%results[1],
-            #           "             time taken (s): %f"%(time),
-            #           sep='\n', end='\n\n', file=fout)
-
             npyscreen.notify_confirm('\n\n'.join([
                     "Key Queried: %s \n"%results[0], 
                     "Value found: %s \n"%results[1], 
                     "Time taken: %f"%time]),
                     editw=1, title='One result found:')
-
 
     def open_db(self):
         """
