@@ -29,10 +29,10 @@ def makeBTREE():
         value = ""
         for i in range(vrng):
             value += str(get_random_char())
-        # if index == 777:
-        #     print("key %d = %s"%(index, key))
-        #     print("value %d = %s"%(index, value))
-        # print ("")
+        if index in {777, 1234, 65500, 12039, 19034, 92834, 42397, 23481}:
+            print("key %d = %s"%(index, key))
+            print("value %d = %s"%(index, value))
+            print ("")
         key = key.encode(encoding='UTF-8')
         value = value.encode(encoding='UTF-8')
         db[key] = value
