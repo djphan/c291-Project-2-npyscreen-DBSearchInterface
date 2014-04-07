@@ -68,8 +68,8 @@ class RangeRetrieve(npyscreen.ActionForm):
             # if the user self generated the key pair just display the one result
             # otherwise display all 4 results from the auto generated pairs.
             if hasattr(self, 'user_key_pairs'):
-                self.user_result.value = str(self.user_range_search_data[0][0] * 1000000) +\
-                    " : Range " +\
+                self.user_result.value = "Time: " + str(int(self.user_range_search_data[0][0] * 1000000)) +\
+                    " microseconds. Range: " +\
                     str(len(self.user_range_search_data[0][1]))
             if hasattr(self, 'key_pairs'):
                 self.result1.value = str(self.range_search_data[0][0] * 1000000) +\
