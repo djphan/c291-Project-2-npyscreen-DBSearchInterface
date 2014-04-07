@@ -106,7 +106,12 @@ def makeINDEXFILE():
 
         # Database file and index file are inverse of each other.
         db[key] = value
-        indexfile[value] = key
+
+        # Deal with duplicate data
+        if value not in indexfile:
+            indexfile[value] = key
+        else:
+            indexfile[value] = indexfile[value] + b' ' + value
 
     try:
         db.close()

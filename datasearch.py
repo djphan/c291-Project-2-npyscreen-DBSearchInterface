@@ -54,27 +54,21 @@ class DataRetrieve(npyscreen.ActionForm):
         index = bsddb.hashopen(INDEX_FILE, 'r')
 
         time1 = time.time()
-        result = index[self.search_data.value.encode()].decode()
+        result = index[self.search_data.value.encode()].decode().split(' ')
         time2 = time.time()
 
         timer = int((time2 - time1) * 1000 * 1000)
-        npyscreen.notify_confirm("One record retrieved.\n" +
+        npyscreen.notify_confirm("%d record(s) retrieved.\n"%(len(result)) +
                                  "Execution time: %d microseconds."%(timer),
                                  editw=1, title='Result:')
 
         with open("answers", mode='a') as fout:
-            print(self.search_data.value,
-                  result,
-                  '',
-                  sep='\n', file=fout)
+            for item in result:
+                print(self.search_data.value,
+                      item,
+                      '',
+                      sep='\n', file=fout)
         
-
-# with open("log.out", mode='a') as fout:
-#             print("DATA_SEARCH: %s"%gui.arg,
-#                   "             data queried = %s"%self.search_data.value,
-#                   "             key returned = %s"%result,
-#                   "             time taken (s): %d"%(timer),
-#                   sep='\n', end='\n\n', file=fout)
 
         try: index.close()
         except: pass
