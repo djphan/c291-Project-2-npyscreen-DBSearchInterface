@@ -27,10 +27,6 @@ class MainMenu(npyscreen.FormBaseNew):
         def buttonpress4(*args):
             try:
                 dropDB(hashfile=(True if arg=='indexfile' else False))
-           # DP: Time to find a method to deal with permission errors.     
-           # except bsddb.db.DBAccessError:
-               # npyscreen.notify_confirm("Permission denied. Database access error", 
-               #                          title="Permission denied", editw=1)
             except Exception as e:
                 npyscreen.notify_confirm(str(e),
                     title="Database File Error", editw=1) 

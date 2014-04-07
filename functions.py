@@ -41,7 +41,6 @@ def makeHASH():
     try:
         db = bsddb.hashopen(DA_FILE, "w")
     except:
-        print("DB doesn't exist, creating a new one")
         db = bsddb.hashopen(DA_FILE, "c")
     random.seed(SEED)
 
