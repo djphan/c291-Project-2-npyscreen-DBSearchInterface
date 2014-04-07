@@ -25,6 +25,7 @@ class MainMenu(npyscreen.FormBaseNew):
         def buttonpress3(*args):
             self.parentApp.switchForm("RANGERETRIEVE")
         def buttonpress4(*args):
+            # Check for database file to remove. Return errors.
             try:
                 dropDB(hashfile=(True if arg=='indexfile' else False))
             except Exception as e:

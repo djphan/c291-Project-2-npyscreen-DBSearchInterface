@@ -12,6 +12,8 @@ class KeyRetrieve(npyscreen.ActionForm):
         """
         Takes in results as a tuple of (key, value), and time, 
         and displays the desired results given in the form. 
+
+        Useful for setting the cursor.
         """
         if not results:
             npyscreen.notify_confirm("No results given. Time taken: %f" %time, editw=1,
@@ -52,33 +54,23 @@ class KeyRetrieve(npyscreen.ActionForm):
         try:
             # Generate results. 
             db_file = self.open_db()
-            time1 = time.time()
+            time1 = time.time() # Time 1
+            # Return the result value by indexing into the db
             results = db_file[self.search_key.value.encode(encoding='UTF-8')].decode(encoding='UTF-8')
-            # Returns a tuple of (key, value) using the BerkleyDB cursor
-            # Comment out the cursor function
-            # results = results.set_location(self.search_key.value.encode(encoding='UTF-8'))
-            time2 = time.time()
-
+            time2 = time.time() # Time 2
             time_result = int((time2 - time1) * 1000 * 1000)
-
-            # results = (results[0].decode(encoding='UTF-8'), results[1].decode(encoding='UTF-8'))
             results = (self.search_key.value, results)
 
         except KeyError:
             npyscreen.notify_confirm("Invalid key entered. Database does not have key value", 
                                      editw=1, title='Key Error')
             return
-       
-        #npyscreen.notify_confirm(str(results), editw=1,
-        #                             title='Search Key Error')
-
+      
         self.process_result(results, time_result)
-
         self.editing = True
 
         try: db_file.close()
         except: pass
-
 
     def on_cancel(self):
         self.parentApp.switchFormPrevious()
