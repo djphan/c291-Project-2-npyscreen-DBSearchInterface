@@ -1,6 +1,6 @@
 import bsddb3 as bsddb
 import random, os
-# Make sure you run "mkdir /tmp/my_db" first!
+# Make sure you run "mkdir /tmp/djp_db" first!
 DA_DIR = "/tmp/djp_db/"
 DA_FILE = "/tmp/djp_db/sample_db"
 INDEX_FILE = "/tmp/djp_db/index_db"
@@ -29,10 +29,6 @@ def makeBTREE():
         value = ""
         for i in range(vrng):
             value += str(get_random_char())
-        if index in {777, 1234, 65500, 12039, 19034, 92834, 42397, 23481}:
-            print("key %d = %s"%(index, key))
-            print("value %d = %s"%(index, value))
-            print ("")
         key = key.encode(encoding='UTF-8')
         value = value.encode(encoding='UTF-8')
         db[key] = value
@@ -45,7 +41,6 @@ def makeHASH():
     try:
         db = bsddb.hashopen(DA_FILE, "w")
     except:
-        print("DB doesn't exist, creating a new one")
         db = bsddb.hashopen(DA_FILE, "c")
     random.seed(SEED)
 
@@ -58,12 +53,6 @@ def makeHASH():
         value = ""
         for i in range(vrng):
             value += str(get_random_char())
-        # if index == 777:
-        #     print("key %d = %s"%(index, key))
-        #     print("value %d = %s"%(index, value))
-        #print (key)
-        #print (value)
-        #print ("")
         key = key.encode(encoding='UTF-8')
         value = value.encode(encoding='UTF-8')
         db[key] = value
@@ -105,9 +94,6 @@ def makeINDEXFILE():
         value = ""
         for i in range(vrng):
             value += str(get_random_char())
-        # if index == 777:
-        #     print("key %d = %s"%(index, key))
-        #     print("value %d = %s"%(index, value))
         key = key.encode()
         value = value.encode()
         db[key] = value

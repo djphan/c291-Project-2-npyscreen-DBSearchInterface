@@ -91,7 +91,6 @@ class RangeRetrieve(npyscreen.ActionForm):
                 f.write(record[0].decode("utf-8") + '\n')
                 f.write(record[1].decode("utf-8") + '\n\n')
             f.close()
-            # npyscreen.notify_confirm(e)
 
             # save most recent auto generated key pairs
             f = open("range_key_pairs", "w+")
@@ -136,7 +135,6 @@ class RangeRetrieve(npyscreen.ActionForm):
                 return
 
         # create form buttons and fields
-        self.nextrely+=1
         self.generate_button = self.add(npyscreen.ButtonPress,
             name="Generate key prefix pairs")
         self.key_pair_list = self.add(npyscreen.TitleText,
@@ -156,7 +154,7 @@ class RangeRetrieve(npyscreen.ActionForm):
         self.result4 = self.add(npyscreen.TitleText, 
             name="Result 4: ", editable=False)
 
-        self.nextrely+=2
+        self.nextrely+=1
         self.enter_prefix = self.add(npyscreen.TitleText,
             name="Enter key pair prefixes of your own", editable=False)
         self.range_start = self.add(npyscreen.TitleText,
@@ -166,7 +164,7 @@ class RangeRetrieve(npyscreen.ActionForm):
             name="End Key: ")
         self.range_end.value = ''
 
-        self.nextrely+=2
+        self.nextrely+=1
 
         self.timer_button = self.add(npyscreen.ButtonPress,
             name="Start user generated key timing process")
@@ -174,7 +172,6 @@ class RangeRetrieve(npyscreen.ActionForm):
         self.generate_button.whenPressed = generate_key_pairs
 
         
-        self.nextrely+=1
         self.user_result = self.add(npyscreen.TitleText, 
             name="User provided key pair result: ", editable=False)
     

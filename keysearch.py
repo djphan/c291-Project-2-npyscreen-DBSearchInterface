@@ -4,7 +4,6 @@ from functions import *
 import gui 
 import time
 
-
 class KeyRetrieve(npyscreen.ActionForm):
     def create(self):
         self.search_key = self.add(npyscreen.TitleText, name='Input Key:')
@@ -20,20 +19,17 @@ class KeyRetrieve(npyscreen.ActionForm):
 
 
         if results:
-            with open("log.out", mode='a') as fout:
-                print("KEY_SEARCH: %s"%gui.arg,
-                      "             key queried = %s"%results[0],
-                      "             data returned = %s"%results[1],
-                      "             time taken (s): %f"%(time),
-                      sep='\n', end='\n\n', file=fout)
+            with open("answers", mode='a') as fout:
+                print(results[0],
+                      results[1],
+                      '',
+                      sep='\n', file=fout)
 
             npyscreen.notify_confirm('\n\n'.join([
                     "Key Queried: %s \n"%results[0], 
                     "Value found: %s \n"%results[1], 
                     "Time taken: %f"%time]),
                     editw=1, title='One result found:')
-
-
 
     def open_db(self):
         """
@@ -78,6 +74,7 @@ class KeyRetrieve(npyscreen.ActionForm):
        
         #npyscreen.notify_confirm(str(results), editw=1,
         #                             title='Search Key Error')
+
         self.process_result(results, time_result)
 
         self.editing = True
