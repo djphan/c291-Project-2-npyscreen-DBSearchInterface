@@ -27,7 +27,7 @@ class KeyRetrieve(npyscreen.ActionForm):
                       '',
                       sep='\n', file=fout)
 
-            npyscreen.notify_confirm('\n\n'.join([ 
+            npyscreen.notify_confirm('\n\n'.join([ "One record retrieved.\n" +
                     "Time taken: %f microseconds"%time]),
                     editw=1, title='One result found:')
 
