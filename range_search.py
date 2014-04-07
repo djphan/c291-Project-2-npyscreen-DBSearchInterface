@@ -86,11 +86,12 @@ class RangeRetrieve(npyscreen.ActionForm):
                     str(len(self.range_search_data[3][1]))
 
             # output data to answers file
-            f = open("answers", "a")
-            for record in self.user_range_search_data[0][1]:
-                f.write(record[0].decode("utf-8") + '\n')
-                f.write(record[1].decode("utf-8") + '\n\n')
-            f.close()
+            if self.user_range_search_data:
+                f = open("answers", "a")
+                for record in self.user_range_search_data[0][1]:
+                    f.write(record[0].decode("utf-8") + '\n')
+                    f.write(record[1].decode("utf-8") + '\n\n')
+                f.close()
 
             # save most recent auto generated key pairs
             f = open("range_key_pairs", "w+")
